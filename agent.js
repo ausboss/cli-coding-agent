@@ -1,5 +1,5 @@
 // agent.js
-// Run:  GEMINI_API_KEY=your-google-api-key node agent.js
+// Run:  API_KEY=your-gemini-api-key node agent.js
 // Deps: npm i openai dotenv chalk tiktoken marked marked-terminal
 
 import chalk from "chalk";
@@ -11,17 +11,22 @@ import {
   processError,
 } from "./src/errors/index.js";
 
-// Initial check for API key (can stay here or move to config)
+// Initial check for API key
 if (!config.API_KEY) {
   console.error(
     chalk.red(
-      `🚨 Error: ${config.ENV_VAR_API_KEY} environment variable not set. Please provide your Google Cloud API Key.`
+      `🚨 Error: ${config.ENV_VAR_API_KEY} environment variable not set. Please provide your API Key.`
+    )
+  );
+  console.error(
+    chalk.yellow(
+      `Set it in your .env file or run with: API_KEY=your-api-key node agent.js`
     )
   );
   process.exit(1);
 }
 
-console.log(chalk.cyan("Starting Gemini CLI Agent..."));
+console.log(chalk.cyan("Starting CLI Agent with Gemini API via OpenAI compatibility layer..."));
 
 // --- Run the Agent ---
 runCLI().catch((err) => {

@@ -4,13 +4,16 @@ import OpenAI from "openai";
 import * as config from "../config/index.js";
 import { ERROR_TYPES, getErrorMessage, processError } from "../errors/index.js";
 
-// Initialize OpenAI client here
-// Using defaultQuery: false prevents OpenAI client from looking for OPENAI_API_KEY env var
+// Initialize OpenAI client here with Gemini API compatibility
 const openai = new OpenAI({
-  apiKey: config.API_KEY,
-  baseURL: config.BASE_URL,
+  apiKey: config.API_KEY, // This should be your Gemini API key from .env
+  baseURL: config.BASE_URL, // This should point to the OpenAI compatibility endpoint
   defaultQuery: false,
 });
+
+console.log(chalk.green("🔑 Using API Key for model communication"));
+console.log(chalk.blue(`🌐 Base URL: ${config.BASE_URL}`));
+console.log(chalk.blue(`🤖 Model: ${config.MODEL}`));
 
 /**
  * Makes a chat completion request to the configured API endpoint with retry logic.
