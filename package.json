@@ -1,0 +1,33 @@
+{
+  "name": "gemini-cli-agent",
+  "version": "1.0.0",
+  "description": "A command-line interface agent interacting with Google Gemini API (via OpenAI compatibility layer) and custom tools.",
+  "main": "agent.js",
+  "type": "module",
+  "scripts": {
+    "start": "node agent.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "dotenv": "^16.5.0",
+    "marked": "^12.0.2",
+    "marked-terminal": "^6.2.0",
+    "openai": "^4.95.1",
+    "tiktoken": "^1.0.20"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "author": "ausboss",
+  "license": "MIT",
+  "keywords": [
+    "gemini",
+    "ai",
+    "cli",
+    "agent",
+    "openai",
+    "tools",
+    "llm"
+  ]
+}
