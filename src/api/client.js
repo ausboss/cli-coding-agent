@@ -8,10 +8,11 @@ import { ERROR_TYPES, getErrorMessage, processError } from "../errors/index.js";
 const openai = new OpenAI({
   apiKey: config.API_KEY, // This should be your Gemini API key from .env
   baseURL: config.BASE_URL, // This should point to the OpenAI compatibility endpoint
-  defaultQuery: false,
+  defaultQuery: { key: config.API_KEY }, // Required for Gemini's OpenAI compatibility layer
 });
 
 console.log(chalk.green("🔑 Using API Key for model communication"));
+console.log(chalk.blue(`🔑 API Key: ${config.API_KEY}`));
 console.log(chalk.blue(`🌐 Base URL: ${config.BASE_URL}`));
 console.log(chalk.blue(`🤖 Model: ${config.MODEL}`));
 
@@ -43,7 +44,8 @@ export async function callChatApi(messages, toolsSpecs) {
         messages: messages,
         tools: toolsSpecs.length > 0 ? toolsSpecs : undefined, // Only send tools if available
         tool_choice: toolsSpecs.length > 0 ? "auto" : undefined, // Only send tool_choice if tools are present
-        // temperature: 0.7, // Optional: Add if needed
+        temperature: 0.7,
+        max_tokens: 1024,
       });
       lastError = null; // Reset error on success
       console.log(chalk.green("✅ API Call Successful."));

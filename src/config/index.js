@@ -13,9 +13,9 @@ export const ENV_VAR_TOOL_SERVER = "TOOL_SERVER_BASE_URL";
 // Using Gemini API with OpenAI compatibility layer
 export const BASE_URL =
   process.env[ENV_VAR_BASE_URL] ??
-  "https://generativelanguage.googleapis.com/v1beta/openai/"; // Note the /openai/ path at the end
+  "https://generativelanguage.googleapis.com/v1beta/openai"; // No trailing slash
 export const MODEL =
-  process.env[ENV_VAR_MODEL] ?? "gemini-2.0-flash"; 
+  process.env[ENV_VAR_MODEL] ?? "gemini-1.5-flash"; 
 export const PROMPT_FILE =
   process.env[ENV_VAR_PROMPT_FILE] ?? path.resolve("system_prompt.txt");
 export const API_KEY = process.env[ENV_VAR_API_KEY];
